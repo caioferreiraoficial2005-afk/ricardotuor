@@ -19,7 +19,11 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://ricardotuor.vercel.app/og.jpg">
 <link rel="icon" href="favicon.png">
-<link rel="preload" href="capa.jpg" as="image" media="(min-width:0px)">
+<link rel="preload" href="capa-v2.webp" as="image" media="(min-width:901px)" fetchpriority="high">
+<link rel="preload" href="capa-v2-m.webp" as="image" media="(max-width:900px)" fetchpriority="high">
+<link rel="preconnect" href="https://maps.google.com">
+<link rel="preconnect" href="https://maps.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://maps.googleapis.com">
 <link rel="preload" href="barlowc-800.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="barlow-400.woff2" as="font" type="font/woff2" crossorigin>
 <style>
@@ -87,7 +91,7 @@ h1,h2,h3{font-family:"BC",sans-serif;font-weight:800;text-transform:uppercase;li
 .est i{font-style:normal;display:inline-block;text-shadow:0 0 0 rgba(255,194,26,0)}
 
 /* NETO */
-.quem{position:relative;z-index:5;will-change:clip-path;background:var(--papel);padding:clamp(110px,12vw,180px) 0}
+.quem{position:relative;z-index:5;background:var(--papel);padding:clamp(110px,12vw,180px) 0}
 .quem .wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(40px,6vw,100px);align-items:center}
 .sol{position:relative;aspect-ratio:1/1.1;max-width:540px;width:100%;justify-self:center}
 .sol .disco{position:absolute;left:-4%;top:8%;width:82%;aspect-ratio:1;border-radius:50%;background:var(--laranja)}
@@ -113,7 +117,7 @@ h1,h2,h3{font-family:"BC",sans-serif;font-weight:800;text-transform:uppercase;li
 .dest{position:relative;z-index:6;background:#fff}
 .dest-t{padding:clamp(110px,11vw,170px) 0 clamp(56px,6vw,90px)}
 .palco{position:relative;height:100vh;height:100svh;min-height:540px;overflow:hidden;background:var(--noite);color:#fff}
-.camada{position:absolute;inset:0;z-index:1;display:flex;align-items:flex-end;will-change:clip-path}
+.camada{position:absolute;inset:0;z-index:1;display:flex;align-items:flex-end;overflow:hidden}
 .camada picture,.camada img{position:absolute;inset:0;width:100%;height:100%}
 .camada img{object-fit:cover}
 .camada::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,12,16,.72) 0%,rgba(10,12,16,.2) 45%,rgba(10,12,16,0) 100%)}
@@ -364,7 +368,70 @@ footer .base{grid-column:1/-1;padding-top:22px;border-top:1px solid rgba(255,255
 #nav .lg img{height:60px;width:auto;filter:drop-shadow(0 3px 10px rgba(0,0,0,.35));transition:height .4s}#nav.solid .lg img{height:48px;filter:none}
 @media(max-width:900px){#nav .lg img{height:44px}#nav.solid .lg img{height:38px}}
 footer .flogo{height:84px;width:auto;margin-bottom:10px}
-</style>
+
+/* v2: desempenho */
+.camada{will-change:transform}
+.quem{will-change:transform}
+.camada picture{will-change:transform}
+/* v2: confiança */
+.conf{position:relative;z-index:6;background:var(--noite);color:#fff;padding:clamp(90px,10vw,150px) 0;overflow:hidden}
+.conf .bgc{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.32}
+.conf::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,12,16,.55),rgba(10,12,16,.9))}
+.conf .wrap{position:relative;z-index:2}
+.conf .k{color:#ffc477}
+.conf h2{font-size:clamp(48px,6vw,100px);max-width:13ch;margin:14px 0 18px}
+.conf h2 em{font-style:normal;color:var(--laranja)}
+.conf .sub{font-size:clamp(18px,1.6vw,22px);max-width:44ch;opacity:.9}
+.cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:clamp(44px,5vw,70px)}
+.ci{border-top:2px solid var(--laranja);padding:22px 4px 0}
+.ci svg{width:34px;height:34px;color:var(--laranja);margin-bottom:14px}
+.ci b{display:block;font-family:"BC";font-weight:800;text-transform:uppercase;font-size:clamp(24px,2vw,30px);line-height:1}
+.ci span{display:block;font-size:15.5px;opacity:.82;margin-top:8px;line-height:1.45}
+/* v2: fita de fotos do Instagram */
+.fita{position:relative;z-index:6;background:var(--papel);padding:clamp(80px,8vw,120px) 0;overflow:hidden}
+.fita .tit{margin-bottom:clamp(34px,4vw,54px)}
+.fita .tit a{color:var(--laranja);font-weight:700}
+.trilha{display:flex;gap:14px;width:max-content;animation:fita 60s linear infinite}
+.fita:hover .trilha{animation-play-state:paused}
+.trilha img{height:clamp(240px,24vw,360px);width:auto;aspect-ratio:4/5;object-fit:cover;flex:none}
+@keyframes fita{to{transform:translate3d(-50%,0,0)}}
+@media(prefers-reduced-motion:reduce){.trilha{animation:none}}
+/* v2: palco em trilho (horizontal) */
+.palco.trilho .trk{position:absolute;inset:0;display:flex;will-change:transform}
+.palco.trilho .camada{position:relative;inset:auto;flex:0 0 100vw;width:100vw;height:100%;clip-path:none!important}
+/* v2: palco em pilha (cartões que empilham) */
+.palco.pilha{height:auto;min-height:0;overflow:visible;background:transparent;padding:10px 0 40px}
+.palco.pilha .camada{position:sticky;inset:auto;top:11vh;height:78vh;width:min(1240px,92vw);margin:0 auto 6vh;border-radius:26px;overflow:hidden;clip-path:none!important;transform-origin:50% 0%}
+.palco.pilha .camada .esc{display:none}
+/* v2: capa dividida */
+.hero.dividida{background:var(--noite)}
+.hero.dividida picture,.hero.dividida .bg{left:42%;width:58%}
+.hero.dividida::after{display:none}
+.hero.dividida .wrap{top:0;bottom:0;align-items:center;justify-content:flex-start}
+.hero.dividida .esq{max-width:40%}
+.hero.dividida .lado{position:absolute;left:clamp(20px,4vw,56px);bottom:clamp(40px,7vh,80px)}
+.hero.dividida h1{font-size:clamp(56px,min(7vw,12vh),124px)}
+/* v2: capa centralizada */
+.hero.centro .wrap{flex-direction:column;align-items:center;text-align:center;bottom:clamp(50px,9vh,100px)}
+.hero.centro h1{max-width:12ch;margin:0 auto}
+.hero.centro .bora{justify-content:center}
+.hero.centro .lado{align-items:center}
+.hero .bg.kb{animation:kb 24s ease-out both}
+@keyframes kb{from{transform:scale(1.12)}to{transform:scale(1)}}
+.selo{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.14);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:8px 14px;font-size:13.5px;font-weight:600;letter-spacing:.04em}
+.selo img{height:26px;width:auto;background:#fff;padding:2px}
+@media(max-width:900px){
+  .cgrid{grid-template-columns:1fr 1fr;gap:22px 14px}
+  .conf{text-align:center}.conf h2,.conf .sub{margin-left:auto;margin-right:auto}
+  .ci{text-align:left}
+  .palco.pilha .camada{top:9vh;height:74vh;border-radius:20px}
+  .hero.dividida picture,.hero.dividida .bg{left:0;width:100%;height:58%}
+  .hero.dividida .wrap{top:auto;bottom:34px;flex-direction:column;align-items:center}
+  .hero.dividida .esq{max-width:none}
+  .hero.dividida .lado{position:static}
+  .hero.dividida h1{font-size:clamp(44px,12vw,62px)}
+}
+#topo::before{content:'';position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 60% 55% at 50% 52%,rgba(10,12,16,.5),rgba(10,12,16,0) 75%);pointer-events:none}.hero.centro h1 em{color:#ffe3b0}</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute">
@@ -380,10 +447,8 @@ footer .flogo{height:84px;width:auto;margin-bottom:10px}
   </div>
 </header>
 
-<section class="hero" id="topo">
-  <picture>
-    <img decoding="async" class="bg" id="heroImg" fetchpriority="high" src="capa.jpg" alt="Barco no mar azul de Alagoas">
-  </picture>
+<section class="hero centro" id="topo">
+  <picture><source media="(max-width:900px)" srcset="capa-v2-m.webp"><img decoding="async" class="bg kb" id="heroImg" fetchpriority="high" src="capa-v2.webp" alt="Barco de passeio na Foz do Rio São Francisco ao pôr do sol"></picture>
   <div class="wrap">
     <div class="esq"><h1 class="split" id="heroTit">Onde o rio encontra <em>o mar.</em></h1>
     <div class="bora h-fade">De barco até <span class="slot" id="slot"><b>a Foz</b><b>as dunas</b><b>o pôr do sol</b><b>a Foz</b></span></div></div>
@@ -399,7 +464,7 @@ footer .flogo{height:84px;width:auto;margin-bottom:10px}
   <div class="wrap">
     <div class="sol">
       <div class="disco" id="disco"></div>
-      <div class="foto"><img loading="lazy" decoding="async" src="rt-quem.jpg" alt="Casal no barco do Ricardo Tuor no pôr do sol do Rio São Francisco" style="object-position:50% 45%"></div>
+      <div class="foto"><img loading="lazy" decoding="async" src="rt-quem.webp" alt="Casal no barco do Ricardo Tuor no pôr do sol do Rio São Francisco" style="object-position:50% 45%"></div>
       <div class="tag">Ricardo Tuor · Piaçabuçu<small>Passeios de barco e jeep</small></div>
     </div>
     <div>
@@ -416,15 +481,25 @@ footer .flogo{height:84px;width:auto;margin-bottom:10px}
   </div>
 </section>
 
+<section class="conf" id="seguranca">
+  <img loading="lazy" decoding="async" class="bgc" src="rt-por.webp" alt="">
+  <div class="wrap">
+    <span class="k rv">Passeio tranquilo</span>
+    <h2 class="split">O rio, o sol e <em>alguém que conhece.</em></h2>
+    <p class="sub rv">Você só sobe no barco. O Ricardo cuida do horário, das paradas e do melhor ponto pra ver o sol se pôr no Velho Chico.</p>
+    <div class="cgrid"><div class="ci rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/></svg><b>Resposta rápida</b><span>Tudo combinado pelo WhatsApp, com as dúvidas tiradas antes.</span></div><div class="ci rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b>Horário flexível</b><span>O passeio no horário que for melhor pro seu grupo.</span></div><div class="ci rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><b>Pôr do sol</b><span>A volta pelo rio com o céu pegando fogo.</span></div><div class="ci rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg><b>604 avaliações</b><span>Nota 5,0 no Google.</span></div></div>
+  </div>
+</section>
+
 <section class="pas" id="servicos">
   <div class="wrap">
     <div class="tit"><span class="k rv">Serviços</span><h2 class="split">Do que você <em>precisa?</em></h2></div>
     <div class="faixas">
-      <a class="faixa rv" href="#reservar" data-pre="Passeio de barco até a Foz"><img loading="lazy" decoding="async" src="d-rt-dunas.jpg" alt="Casal nas Dunas Douradas da Foz do São Francisco" style="object-position:50% 55%"><span class="mk"><small>Passeio de barco</small><b>Até a Foz e as Dunas Douradas</b><em>Pelo Velho Chico até o encontro do rio com o mar, com parada nas dunas e banho de rio.</em></span><span class="ir">Quero esse →</span></a>
-      <a class="faixa rv" href="#reservar" data-pre="Barco privativo"><img loading="lazy" decoding="async" src="d-rt-barco.jpg" alt="Casal comemorando no barco privativo no pôr do sol" style="object-position:50% 45%"><span class="mk"><small>Barco privativo</small><b>Só o seu grupo, no seu horário</b><em>Mais tempo em cada parada, bebida gelada a bordo e o pôr do sol na volta.</em></span><span class="ir">Quero o privativo →</span></a>
+      <a class="faixa rv" href="#reservar" data-pre="Passeio de barco até a Foz"><img loading="lazy" decoding="async" src="d-rt-dunas.webp" alt="Casal nas Dunas Douradas da Foz do São Francisco" style="object-position:50% 55%"><span class="mk"><small>Passeio de barco</small><b>Até a Foz e as Dunas Douradas</b><em>Pelo Velho Chico até o encontro do rio com o mar, com parada nas dunas e banho de rio.</em></span><span class="ir">Quero esse →</span></a>
+      <a class="faixa rv" href="#reservar" data-pre="Barco privativo"><img loading="lazy" decoding="async" src="d-rt-barco.webp" alt="Casal comemorando no barco privativo no pôr do sol" style="object-position:50% 45%"><span class="mk"><small>Barco privativo</small><b>Só o seu grupo, no seu horário</b><em>Mais tempo em cada parada, bebida gelada a bordo e o pôr do sol na volta.</em></span><span class="ir">Quero o privativo →</span></a>
     </div>
   </div>
-</section></section>
+</section>
 
 <section class="dest" id="roteiros">
   <div class="dest-t wrap"><div class="tit"><span class="k rv">Passeios</span><h2 class="split">O que te espera <em>no rio.</em></h2><p class="rv">Um dia inteiro de paisagem que parece outro país, a 2 horas de Maceió.</p></div></div>
@@ -435,22 +510,32 @@ footer .flogo{height:84px;width:auto;margin-bottom:10px}
   </div>
 </section>
 
+<section class="aval" id="avaliacoes">
+  <div class="wrap">
+    <div class="aval-h">
+      <div><span class="k rv">Avaliações</span><h2 class="split">Quem foi, recomenda.</h2></div>
+      <div class="nota rv"><svg><use href="#g"/></svg><b>5,0</b><div><span class="est brilho"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></span><small>604 avaliações no Google</small></div></div>
+    </div>
+    <div class="mural"><div class="dep rv"><div class="dep-top"><span class="est"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></span><svg><use href="#g"/></svg></div><p>Meu marido e eu estávamos em dúvida se iríamos fazer o passeio na Foz do Rio São Francisco e decidimos de última hora. Contatei o Ricardo, que me sugeriu um passeio de barco privativo à tarde, e foi a melhor escolha. Ele foi muito solícito, deu boas dicas e uma ótima conversa. O pôr do sol no retorno foi espetacular ❤️</p><div class="quem-av"><span class="av" style="background:#f08a12">A</span><div><b>Agatha</b><small>Google</small></div></div></div><figure class="mfoto rv"><img loading="lazy" src="rt-casal-dunas.webp" alt="Mãos dadas nas Dunas Douradas"><figcaption>Dunas Douradas</figcaption></figure><div class="dep rv"><div class="dep-top"><span class="est"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></span><svg><use href="#g"/></svg></div><p>Ricardo nos proporcionou uma experiência maravilhosa, foi extremamente atencioso no passeio, bastante flexível com a nossa necessidade e disponibilidade de horários. O passeio é inesquecível, uma experiência única na foz do rio São Francisco.</p><div class="quem-av"><span class="av" style="background:#0f4a86">B</span><div><b>Bruna Lino</b><small>Google</small></div></div></div><figure class="mfoto rv"><img loading="lazy" src="rt-pedido.webp" alt="Pedido de casamento nas dunas"><figcaption>Pedido de casamento na Foz</figcaption></figure><div class="dep rv"><div class="dep-top"><span class="est"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></span><svg><use href="#g"/></svg></div><p>Esse é o melhor passeio que você poderia fazer no Rio São Francisco, e em Alagoas pra mim é o top 1, meu lugar favorito a se visitar. E fazer o passeio com alguém que conhece o rio é ainda melhor, o Ricardo é sem dúvidas o melhor que eu poderia ter escolhido.</p><div class="quem-av"><span class="av" style="background:#16171b">R</span><div><b>Rafael Santana</b><small>Google</small></div></div></div><figure class="mfoto rv"><img loading="lazy" src="rt-banho.webp" alt="Banho de rio no fim de tarde"><figcaption>Banho de rio</figcaption></figure></div>
+  </div>
+</section>
+
 <section class="dia" id="dia">
   <div class="wrap">
     <div class="tit"><span class="k rv">Como funciona</span><h2 class="split">Do píer até <em>a Foz</em></h2><p class="rv">Tudo combinado pelo WhatsApp antes de você chegar em Piaçabuçu.</p></div>
     <div class="linha">
       <div class="eixo"><i id="eixo"></i></div>
-      <div class="passo"><span class="ponto"></span><div class="img"><img loading="lazy" decoding="async" src="rt-cliente.jpg" alt="Cliente no barco no Rio São Francisco" style="object-position:50% 50%"></div><div class="tx"><b>01</b><h3>Você reserva pelo WhatsApp</h3><p>Manda a data e quantas pessoas. O Ricardo responde rapidinho e tira todas as dúvidas.</p></div></div>
-      <div class="passo"><span class="ponto"></span><div class="img"><img loading="lazy" decoding="async" src="rt-privativo.jpg" alt="Clientes sentadas na proa do barco" style="object-position:50% 50%"></div><div class="tx"><b>02</b><h3>Embarque no píer de Piaçabuçu</h3><p>O barco já te espera no horário combinado, com bebida gelada se você quiser.</p></div></div>
-      <div class="passo"><span class="ponto"></span><div class="img"><img loading="lazy" decoding="async" src="rt-dunas2.jpg" alt="Dunas Douradas na Foz do São Francisco" style="object-position:50% 60%"></div><div class="tx"><b>03</b><h3>Dunas Douradas e skimbunda</h3><p>Parada nas dunas pra caminhar, tirar foto e descer a duna na prancha.</p></div></div>
-      <div class="passo"><span class="ponto"></span><div class="img"><img loading="lazy" decoding="async" src="rt-praia.jpg" alt="Encontro do rio com o mar na Foz" style="object-position:50% 50%"></div><div class="tx"><b>04</b><h3>Onde o rio encontra o mar</h3><p>Banho de rio e o Caminho de Moisés quando a maré tá baixa.</p></div></div>
-      <div class="passo"><span class="ponto"></span><div class="img"><img loading="lazy" decoding="async" src="rt-por.jpg" alt="Casal vendo o pôr do sol no Rio São Francisco" style="object-position:50% 50%"></div><div class="tx"><b>05</b><h3>E o pôr do sol na volta</h3><p>O sol se pondo no Velho Chico, o jeito mais bonito de terminar o dia.</p></div></div>
+      <div class="passo"><span class="ponto"></span><div class="img"><img loading="lazy" decoding="async" src="rt-cliente.webp" alt="Cliente no barco no Rio São Francisco" style="object-position:50% 50%"></div><div class="tx"><b>01</b><h3>Você reserva pelo WhatsApp</h3><p>Manda a data e quantas pessoas. O Ricardo responde rapidinho e tira todas as dúvidas.</p></div></div>
+      <div class="passo"><span class="ponto"></span><div class="img"><img loading="lazy" decoding="async" src="rt-privativo.webp" alt="Clientes sentadas na proa do barco" style="object-position:50% 50%"></div><div class="tx"><b>02</b><h3>Embarque no píer de Piaçabuçu</h3><p>O barco já te espera no horário combinado, com bebida gelada se você quiser.</p></div></div>
+      <div class="passo"><span class="ponto"></span><div class="img"><img loading="lazy" decoding="async" src="rt-dunas2.webp" alt="Dunas Douradas na Foz do São Francisco" style="object-position:50% 60%"></div><div class="tx"><b>03</b><h3>Dunas Douradas e skimbunda</h3><p>Parada nas dunas pra caminhar, tirar foto e descer a duna na prancha.</p></div></div>
+      <div class="passo"><span class="ponto"></span><div class="img"><img loading="lazy" decoding="async" src="rt-praia.webp" alt="Encontro do rio com o mar na Foz" style="object-position:50% 50%"></div><div class="tx"><b>04</b><h3>Onde o rio encontra o mar</h3><p>Banho de rio e o Caminho de Moisés quando a maré tá baixa.</p></div></div>
+      <div class="passo"><span class="ponto"></span><div class="img"><img loading="lazy" decoding="async" src="rt-por.webp" alt="Casal vendo o pôr do sol no Rio São Francisco" style="object-position:50% 50%"></div><div class="tx"><b>05</b><h3>E o pôr do sol na volta</h3><p>O sol se pondo no Velho Chico, o jeito mais bonito de terminar o dia.</p></div></div>
     </div>
   </div>
 </section>
 
 <section class="res" id="reservar">
-  <img loading="lazy" decoding="async" class="res-img" src="d-rt-ilha.jpg" alt="">
+  <img loading="lazy" decoding="async" class="res-img" src="d-rt-ilha.webp" alt="">
   <div class="wrap">
   <div class="res-t">
     <span class="k rv">Orçamento sem compromisso</span>
@@ -478,26 +563,21 @@ footer .flogo{height:84px;width:auto;margin-bottom:10px}
   </div>
 </section>
 
-<section class="aval" id="avaliacoes">
-  <div class="wrap">
-    <div class="aval-h">
-      <div><span class="k rv">Avaliações</span><h2 class="split">Quem foi, recomenda.</h2></div>
-      <div class="nota rv"><svg><use href="#g"/></svg><b>5,0</b><div><span class="est brilho"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></span><small>604 avaliações no Google</small></div></div>
-    </div>
-    <div class="mural"><div class="dep rv"><div class="dep-top"><span class="est"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></span><svg><use href="#g"/></svg></div><p>Meu marido e eu estávamos em dúvida se iríamos fazer o passeio na Foz do Rio São Francisco e decidimos de última hora. Contatei o Ricardo, que me sugeriu um passeio de barco privativo à tarde, e foi a melhor escolha. Ele foi muito solícito, deu boas dicas e uma ótima conversa. O pôr do sol no retorno foi espetacular ❤️</p><div class="quem-av"><span class="av" style="background:#f08a12">A</span><div><b>Agatha</b><small>Google</small></div></div></div><figure class="mfoto rv"><img loading="lazy" src="rt-casal-dunas.jpg" alt="Mãos dadas nas Dunas Douradas"><figcaption>Dunas Douradas</figcaption></figure><div class="dep rv"><div class="dep-top"><span class="est"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></span><svg><use href="#g"/></svg></div><p>Ricardo nos proporcionou uma experiência maravilhosa, foi extremamente atencioso no passeio, bastante flexível com a nossa necessidade e disponibilidade de horários. O passeio é inesquecível, uma experiência única na foz do rio São Francisco.</p><div class="quem-av"><span class="av" style="background:#0f4a86">B</span><div><b>Bruna Lino</b><small>Google</small></div></div></div><figure class="mfoto rv"><img loading="lazy" src="rt-pedido.jpg" alt="Pedido de casamento nas dunas"><figcaption>Pedido de casamento na Foz</figcaption></figure><div class="dep rv"><div class="dep-top"><span class="est"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></span><svg><use href="#g"/></svg></div><p>Esse é o melhor passeio que você poderia fazer no Rio São Francisco, e em Alagoas pra mim é o top 1, meu lugar favorito a se visitar. E fazer o passeio com alguém que conhece o rio é ainda melhor, o Ricardo é sem dúvidas o melhor que eu poderia ter escolhido.</p><div class="quem-av"><span class="av" style="background:#16171b">R</span><div><b>Rafael Santana</b><small>Google</small></div></div></div><figure class="mfoto rv"><img loading="lazy" src="rt-banho.jpg" alt="Banho de rio no fim de tarde"><figcaption>Banho de rio</figcaption></figure></div>
-  </div>
+<section class="fita">
+  <div class="wrap"><div class="tit"><span class="k rv">No Instagram do Ricardo</span><h2 class="split">Gente feliz no <em>Velho Chico.</em></h2><p class="rv">Mais passeios no <a href="https://www.instagram.com/fozdoriosaofrancisco_/" target="_blank" rel="noopener">@fozdoriosaofrancisco_</a>.</p></div></div>
+  <div class="trilha" aria-hidden="true"><img loading="lazy" decoding="async" src="rt-f1.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f2.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f3.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f4.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f5.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f6.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f7.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f8.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f9.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f10.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f11.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f12.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f1.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f2.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f3.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f4.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f5.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f6.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f7.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f8.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f9.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f10.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f11.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f12.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"></div>
 </section>
 
 <section class="loc" id="local">
   <div class="wrap">
     <div class="tit"><span class="k rv">Onde fica</span><h2 class="split">Saindo de <em>Piaçabuçu.</em></h2><p class="rv">Loteamento Santa Inês, 03, Bairro Brasília, Piaçabuçu. Cerca de 2 horas de Maceió, a última cidade antes da Foz.</p></div>
-    <div class="mapa rv"><iframe src="https://maps.google.com/maps?q=-10.4063114,-36.4229218&z=14&output=embed" loading="lazy" title="Mapa do Ricardo Tuor em Piaçabuçu"></iframe></div>
+    <div class="mapa rv"><iframe data-src="https://maps.google.com/maps?q=-10.4063114,-36.4229218&z=14&output=embed" title="Mapa do Ricardo Tuor em Piaçabuçu"></iframe></div>
     <div class="loc-b rv"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Passeio+a+Foz+do+Rio+S%C3%A3o+Francisco+Pia%C3%A7abu%C3%A7u+Ricardotuor" target="_blank" rel="noopener">Abrir no Google Maps</a></div>
   </div>
 </section>
 
 <section class="final" id="contato">
-  <img loading="lazy" decoding="async" class="bg" src="d-rt-por.jpg" alt="Pôr do sol no Rio São Francisco">
+  <img loading="lazy" decoding="async" class="bg" src="d-rt-por.webp" alt="Pôr do sol no Rio São Francisco">
   <div class="wrap">
     <div class="cta">
       <span class="k rv">Alta temporada chegando</span>
@@ -523,19 +603,19 @@ footer .flogo{height:84px;width:auto;margin-bottom:10px}
 const WA='5582993474800';
 // d = foto deitada (computador), m = foto em pé (celular)
 const ROTEIROS=[
-  {id:'Passeio de barco até a Foz',d:'d-foz.jpg',m:'foz.jpg',mp:'50% 60%',reg:'Piaçabuçu · Velho Chico',t:'Foz do São Francisco',tx:'O ponto onde o maior rio do Nordeste encontra o mar, entre dunas e coqueiros.'},
-  {id:'Dunas Douradas',d:'d-rt-dunas.jpg',m:'rt-dunas.jpg',mp:'50% 60%',reg:'Foz do São Francisco',t:'Dunas Douradas',tx:'Dunas de areia fina na beira do rio, com caminhada, fotos e skimbunda.'},
-  {id:'Caminho de Moisés',d:'d-rt-caminho.jpg',m:'rt-caminho.jpg',mp:'50% 55%',reg:'Na maré baixa',t:'Caminho de Moisés',tx:'Na maré baixa o rio abre um caminho de areia no meio da água.'},
-  {id:'Pôr do sol no rio',d:'d-rt-por.jpg',m:'rt-por.jpg',mp:'50% 50%',reg:'Fim de tarde',t:'Pôr do sol',tx:'A volta pelo Velho Chico com o sol se pondo na água.'},
-  {id:'Barco privativo',d:'d-rt-barco.jpg',m:'rt-barco.jpg',mp:'45% 50%',reg:'Só o seu grupo',t:'Barco privativo',tx:'Mais tempo em cada parada e o passeio no seu ritmo.'},
-  {id:'Banho de rio',d:'d-rt-ilha.jpg',m:'rt-banho.jpg',mp:'50% 50%',reg:'Águas do Velho Chico',t:'Banho de rio',tx:'Água doce, morna e calminha no meio do passeio.'},
-  {id:'Passeio de jeep nas dunas',d:'d-rt-dunas.jpg',m:'rt-dunas2.jpg',mp:'50% 60%',reg:'Dunas de Piaçabuçu',t:'Jeep nas dunas',tx:'Passeio de jeep pelas dunas de Piaçabuçu.'}
+  {id:'Passeio de barco até a Foz',d:'d-foz.webp',m:'foz.webp',mp:'50% 60%',reg:'Piaçabuçu · Velho Chico',t:'Foz do São Francisco',tx:'O ponto onde o maior rio do Nordeste encontra o mar, entre dunas e coqueiros.'},
+  {id:'Dunas Douradas',d:'d-rt-dunas.webp',m:'rt-dunas.webp',mp:'50% 60%',reg:'Foz do São Francisco',t:'Dunas Douradas',tx:'Dunas de areia fina na beira do rio, com caminhada, fotos e skimbunda.'},
+  {id:'Caminho de Moisés',d:'d-rt-caminho.webp',m:'rt-caminho.webp',mp:'50% 55%',reg:'Na maré baixa',t:'Caminho de Moisés',tx:'Na maré baixa o rio abre um caminho de areia no meio da água.'},
+  {id:'Pôr do sol no rio',d:'d-rt-por.webp',m:'rt-por.webp',mp:'50% 50%',reg:'Fim de tarde',t:'Pôr do sol',tx:'A volta pelo Velho Chico com o sol se pondo na água.'},
+  {id:'Barco privativo',d:'d-rt-barco.webp',m:'rt-barco.webp',mp:'45% 50%',reg:'Só o seu grupo',t:'Barco privativo',tx:'Mais tempo em cada parada e o passeio no seu ritmo.'},
+  {id:'Banho de rio',d:'d-rt-ilha.webp',m:'rt-banho.webp',mp:'50% 50%',reg:'Águas do Velho Chico',t:'Banho de rio',tx:'Água doce, morna e calminha no meio do passeio.'},
+  {id:'Passeio de jeep nas dunas',d:'d-rt-dunas.webp',m:'rt-dunas2.webp',mp:'50% 60%',reg:'Dunas de Piaçabuçu',t:'Jeep nas dunas',tx:'Passeio de jeep pelas dunas de Piaçabuçu.'}
 ];
 const OUTROS=['Outro lugar'];
 const orc=document.getElementById('orc'),palco=document.getElementById('palco'),pgrid=document.getElementById('pgrid');
 const DESTAQUES=['Passeio de barco até a Foz','Dunas Douradas','Caminho de Moisés','Pôr do sol no rio'];
 const DQ=ROTEIROS.filter(r=>DESTAQUES.includes(r.id));
-DQ.forEach((r,i)=>palco.insertAdjacentHTML('beforeend',`<div class="camada"><picture><source media="(max-width:900px)" srcset="${r.m}"><img loading="lazy" decoding="async" src="${r.d}" alt="${r.t}"${r.mp?` style="--mp:${r.mp}"`:''}></picture><div class="wrap"><div class="nome"><span class="n">${String(i+1).padStart(2,'0')} / ${String(DQ.length).padStart(2,'0')}</span><small>${r.reg}</small><h3>${r.t}</h3></div><div class="lado"><p>${r.tx}</p><a class="btn" href="#reservar" data-pre="${r.id}">Quero esse</a></div></div><div class="esc"></div></div>`));
+DQ.forEach((r,i)=>palco.insertAdjacentHTML('beforeend',`<div class="camada"><picture><source media="(max-width:900px)" srcset="${r.m}"><img decoding="async" fetchpriority="low" src="${r.d}" alt="${r.t}"${r.mp?` style="--mp:${r.mp}"`:''}></picture><div class="wrap"><div class="nome"><span class="n">${String(i+1).padStart(2,'0')} / ${String(DQ.length).padStart(2,'0')}</span><small>${r.reg}</small><h3>${r.t}</h3></div><div class="lado"><p>${r.tx}</p><a class="btn" href="#reservar" data-pre="${r.id}">Quero esse</a></div></div><div class="esc"></div></div>`));
 const TAM=['g','t','','','w','t',''];
 ROTEIROS.forEach((r,i)=>{
   const tm=TAM[i]||'',deitada=tm==='g'||tm==='w';
@@ -621,11 +701,11 @@ document.querySelectorAll('.split').forEach(el=>{
   walk(el);
 });
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);gsap.config({force3D:true});ScrollTrigger.config({ignoreMobileResize:true});
 const REC=/[?&]rec/.test(location.search);
 window.lenis=null;
 if(!REC&&window.Lenis){
-  window.lenis=new Lenis({lerp:.09});lenis.on('scroll',ScrollTrigger.update);
+  window.lenis=new Lenis({lerp:.1,wheelMultiplier:1});lenis.on('scroll',ScrollTrigger.update);
   gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
   document.querySelectorAll('a[href^="#"]:not([data-pre])').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();lenis.scrollTo(a.getAttribute('href'),{offset:a.getAttribute('href')==='#reservar'?-60:0})}));
 }
@@ -652,15 +732,12 @@ gsap.utils.toArray('.rv').forEach(el=>gsap.from(el,{opacity:0,duration:1.5,ease:
 // quem somos: o sol cresce e gira de leve enquanto a seção entra
 gsap.fromTo('#disco',{scale:.6,rotate:-30},{scale:1,rotate:0,ease:'none',scrollTrigger:{trigger:'.quem',start:'top 90%',end:'center center',scrub:true}});
 gsap.from('.sol .foto,.sol .tag',{opacity:0,duration:1.5,stagger:.2,ease:'power2.out',scrollTrigger:{trigger:'.sol',start:'top 80%'}});
-// passeios: o palco fica preso e cada foto cobre a anterior de baixo pra cima, rápido
+// destinos (v2: só transform, sem clip-path, pra não engasgar)
 const CM=gsap.utils.toArray('.camada');
-CM.slice(1).forEach(c=>gsap.set(c,{clipPath:'inset(100% 0% 0% 0%)'}));
-const tlp=gsap.timeline({scrollTrigger:{trigger:'#palco',start:'top top',end:()=>'+='+(CM.length-1)*innerHeight*.75,pin:true,scrub:REC?true:.8,anticipatePin:1,invalidateOnRefresh:true}});
-CM.slice(1).forEach((c,i)=>{
-  tlp.to(c,{clipPath:'inset(0% 0% 0% 0%)',ease:'none',duration:1},i)
-     .to(CM[i].querySelector('.esc'),{opacity:.6,ease:'none',duration:1},i)
-     .fromTo(c.querySelectorAll('.n,small,h3,p,.btn'),{opacity:0,y:40},{opacity:1,y:0,stagger:.05,duration:.5,ease:'power2.out'},i+.45);
-});
+palco.classList.add('trilho');const trk=document.createElement('div');trk.className='trk';CM.forEach(c=>trk.appendChild(c));palco.appendChild(trk);
+const tlp=gsap.timeline({scrollTrigger:{trigger:'#palco',start:'top top',end:()=>'+='+(CM.length-1)*innerWidth,pin:true,scrub:REC?true:.5,anticipatePin:1,invalidateOnRefresh:true,refreshPriority:1}});
+tlp.to(trk,{x:()=>-(CM.length-1)*innerWidth,ease:'none'},0);
+CM.forEach((c,i)=>{gsap.set(c.querySelector('picture'),{xPercent:-12,scale:1.12});tlp.to(c.querySelector('picture'),{xPercent:12,ease:'none',duration:1},0)});
 gsap.from(CM[0].querySelectorAll('.n,small,h3,p,.btn'),{opacity:0,y:30,duration:1.3,stagger:.08,ease:'power3.out',scrollTrigger:{trigger:'#palco',start:'top 60%'}});
 // capa: "Bora pro" troca o destino sozinho
 const slots=gsap.utils.toArray('#slot b');gsap.set(slots,{yPercent:100});gsap.set(slots[0],{yPercent:0});
@@ -680,11 +757,24 @@ mm.add('(min-width:901px)',()=>{
   // capa fica parada e escurece enquanto a seção quem somos sobe por cima como um cartão que se abre
   ScrollTrigger.create({trigger:'.hero',start:'top top',end:'bottom top',pin:true,pinSpacing:false});
   gsap.to('#heroSombra',{opacity:.75,ease:'none',scrollTrigger:{trigger:'.quem',start:'top bottom',end:'top top',scrub:true}});
-  gsap.fromTo('.quem',{clipPath:'inset(6% 6% 0% 6% round 36px)'},{clipPath:'inset(0% 0% 0% 0% round 0px)',ease:'none',scrollTrigger:{trigger:'.quem',start:'top bottom',end:'top top',scrub:true}});
+  gsap.fromTo('.quem',{y:60,scale:.94},{y:0,scale:1,ease:'none',scrollTrigger:{trigger:'.quem',start:'top bottom',end:'top top',scrub:true}});
   // reserva abre como um cartão
-  gsap.fromTo('#reservar',{clipPath:'inset(7% 6% 0% 6%)'},{clipPath:'inset(0% 0% 0% 0%)',ease:'none',scrollTrigger:{trigger:'#reservar',start:'top 95%',end:'top 25%',scrub:REC?true:1}});
+  gsap.from('#reservar .res-t',{y:70,opacity:0,duration:1.3,ease:'power3.out',scrollTrigger:{trigger:'#reservar',start:'top 75%'}});
 });
-window.addEventListener('load',()=>ScrollTrigger.refresh());
+window.addEventListener('load',()=>{ScrollTrigger.sort();ScrollTrigger.refresh()});
+
+/* v2: o mapa carrega antes de você chegar nele e as fotos baixam todas em segundo plano */
+(function(){
+  const mf=document.querySelector('.mapa iframe[data-src]');
+  const liga=()=>{if(mf&&!mf.src)mf.src=mf.dataset.src};
+  if(mf&&'IntersectionObserver' in window){const io=new IntersectionObserver(e=>{if(e[0].isIntersecting){liga();io.disconnect()}},{rootMargin:'2500px 0px'});io.observe(mf)}
+  addEventListener('load',()=>{
+    const L=[...document.querySelectorAll('img[loading="lazy"]')];let i=0;
+    (function n(){L.slice(i,i+5).forEach(im=>{im.loading='eager'});i+=5;if(i<L.length)setTimeout(n,180)})();
+    document.querySelectorAll('.camada img').forEach(im=>{if(im.decode)im.decode().catch(()=>{})});
+    setTimeout(liga,4000);
+  });
+})();
 </script>
 </body>
 </html>
