@@ -373,6 +373,12 @@ footer .flogo{height:84px;width:auto;margin-bottom:10px}
 .camada{will-change:transform}
 .quem{will-change:transform}
 .camada picture{will-change:transform}
+/* v2: capa (texto à esquerda, botões ao lado, sem encostar) */
+.hero .wrap{gap:clamp(40px,5vw,80px)}
+.hero .esq{flex:1 1 auto;min-width:0}
+.hero .lado{flex:0 0 auto}
+.hero h1{font-size:clamp(54px,min(6.4vw,12vh),116px);max-width:11ch}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(8,14,24,.62) 0%,rgba(8,14,24,.25) 45%,rgba(8,14,24,0) 70%);pointer-events:none}
 /* v2: confiança */
 .conf{position:relative;z-index:6;background:var(--noite);color:#fff;padding:clamp(90px,10vw,150px) 0;overflow:hidden}
 .conf .bgc{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.32}
@@ -387,6 +393,10 @@ footer .flogo{height:84px;width:auto;margin-bottom:10px}
 .ci svg{width:34px;height:34px;color:var(--laranja);margin-bottom:14px}
 .ci b{display:block;font-family:"BC";font-weight:800;text-transform:uppercase;font-size:clamp(24px,2vw,30px);line-height:1}
 .ci span{display:block;font-size:15.5px;opacity:.82;margin-top:8px;line-height:1.45}
+.pgrid{grid-auto-rows:minmax(clamp(200px,17vw,280px),auto)}
+@media(max-width:900px){.pgrid{grid-auto-rows:minmax(180px,auto)}}
+.fita-b{display:flex;justify-content:center;margin-top:clamp(30px,3vw,44px)}
+.fita-b .btn svg{width:20px;height:20px}
 /* v2: fita de fotos do Instagram */
 .fita{position:relative;z-index:6;background:var(--papel);padding:clamp(80px,8vw,120px) 0;overflow:hidden}
 .fita .tit{margin-bottom:clamp(34px,4vw,54px)}
@@ -421,6 +431,8 @@ footer .flogo{height:84px;width:auto;margin-bottom:10px}
 .selo{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.14);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:8px 14px;font-size:13.5px;font-weight:600;letter-spacing:.04em}
 .selo img{height:26px;width:auto;background:#fff;padding:2px}
 @media(max-width:900px){
+  .hero::before{background:rgba(8,14,24,.18)}
+  .hero h1{font-size:clamp(44px,12vw,62px);max-width:none}
   .cgrid{grid-template-columns:1fr 1fr;gap:22px 14px}
   .conf{text-align:center}.conf h2,.conf .sub{margin-left:auto;margin-right:auto}
   .ci{text-align:left}
@@ -431,7 +443,7 @@ footer .flogo{height:84px;width:auto;margin-bottom:10px}
   .hero.dividida .lado{position:static}
   .hero.dividida h1{font-size:clamp(44px,12vw,62px)}
 }
-#topo::before{content:'';position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 60% 55% at 50% 52%,rgba(10,12,16,.5),rgba(10,12,16,0) 75%);pointer-events:none}.hero.centro h1 em{color:#ffe3b0}</style>
+#nav .lg img{height:70px}#nav.solid .lg img{height:52px}@media(max-width:900px){#nav .lg img{height:50px}#nav.solid .lg img{height:42px}}</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute">
@@ -447,8 +459,8 @@ footer .flogo{height:84px;width:auto;margin-bottom:10px}
   </div>
 </header>
 
-<section class="hero centro" id="topo">
-  <picture><source media="(max-width:900px)" srcset="capa-v2-m.webp"><img decoding="async" class="bg kb" id="heroImg" fetchpriority="high" src="capa-v2.webp" alt="Barco de passeio na Foz do Rio São Francisco ao pôr do sol"></picture>
+<section class="hero" id="topo">
+  <picture><source media="(max-width:900px)" srcset="capa-v2-m.webp"><img decoding="async" class="bg kb" id="heroImg" fetchpriority="high" src="capa-v2.webp" alt="Vista do barco pras dunas douradas do Rio São Francisco"></picture>
   <div class="wrap">
     <div class="esq"><h1 class="split" id="heroTit">Onde o rio encontra <em>o mar.</em></h1>
     <div class="bora h-fade">De barco até <span class="slot" id="slot"><b>a Foz</b><b>as dunas</b><b>o pôr do sol</b><b>a Foz</b></span></div></div>
@@ -464,7 +476,7 @@ footer .flogo{height:84px;width:auto;margin-bottom:10px}
   <div class="wrap">
     <div class="sol">
       <div class="disco" id="disco"></div>
-      <div class="foto"><img loading="lazy" decoding="async" src="rt-quem.webp" alt="Casal no barco do Ricardo Tuor no pôr do sol do Rio São Francisco" style="object-position:50% 45%"></div>
+      <div class="foto"><img loading="lazy" decoding="async" src="rt-ig-barco.webp" alt="Barco de passeio na beira do Rio São Francisco, perto da Foz" style="object-position:50% 60%"></div>
       <div class="tag">Ricardo Tuor · Piaçabuçu<small>Passeios de barco e jeep</small></div>
     </div>
     <div>
@@ -566,6 +578,7 @@ footer .flogo{height:84px;width:auto;margin-bottom:10px}
 <section class="fita">
   <div class="wrap"><div class="tit"><span class="k rv">No Instagram do Ricardo</span><h2 class="split">Gente feliz no <em>Velho Chico.</em></h2><p class="rv">Mais passeios no <a href="https://www.instagram.com/fozdoriosaofrancisco_/" target="_blank" rel="noopener">@fozdoriosaofrancisco_</a>.</p></div></div>
   <div class="trilha" aria-hidden="true"><img loading="lazy" decoding="async" src="rt-f1.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f2.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f3.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f4.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f5.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f6.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f7.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f8.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f9.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f10.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f11.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f12.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f1.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f2.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f3.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f4.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f5.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f6.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f7.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f8.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f9.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f10.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f11.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"><img loading="lazy" decoding="async" src="rt-f12.webp" alt="Clientes do Ricardo Tuor na Foz do São Francisco"></div>
+  <div class="fita-b"><a class="btn" href="https://www.instagram.com/fozdoriosaofrancisco_/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>Seguir no Instagram</a></div>
 </section>
 
 <section class="loc" id="local">
@@ -616,13 +629,13 @@ const orc=document.getElementById('orc'),palco=document.getElementById('palco'),
 const DESTAQUES=['Passeio de barco até a Foz','Dunas Douradas','Caminho de Moisés','Pôr do sol no rio'];
 const DQ=ROTEIROS.filter(r=>DESTAQUES.includes(r.id));
 DQ.forEach((r,i)=>palco.insertAdjacentHTML('beforeend',`<div class="camada"><picture><source media="(max-width:900px)" srcset="${r.m}"><img decoding="async" fetchpriority="low" src="${r.d}" alt="${r.t}"${r.mp?` style="--mp:${r.mp}"`:''}></picture><div class="wrap"><div class="nome"><span class="n">${String(i+1).padStart(2,'0')} / ${String(DQ.length).padStart(2,'0')}</span><small>${r.reg}</small><h3>${r.t}</h3></div><div class="lado"><p>${r.tx}</p><a class="btn" href="#reservar" data-pre="${r.id}">Quero esse</a></div></div><div class="esc"></div></div>`));
-const TAM=['g','t','','','w','t',''];
+const TAM=['g','t','','','w','t','t'];
 ROTEIROS.forEach((r,i)=>{
   const tm=TAM[i]||'',deitada=tm==='g'||tm==='w';
   pgrid.insertAdjacentHTML('beforeend',`<a class="pcard rv ${tm}" href="#reservar" data-pre="${r.id}"><img decoding="async" src="${deitada?r.d:r.m}" alt="${r.t}" loading="lazy" style="object-position:${deitada?'50% 50%':(r.mp||'50% 50%')}"><span><small>${r.reg}</small><b>${r.t}</b><em>Quero esse →</em></span></a>`);
   if(!['Passeio de barco até a Foz','Barco privativo'].includes(r.id))orc.dest.insertAdjacentHTML('beforeend',`<option value="${r.id}">${r.t}</option>`);
 });
-pgrid.insertAdjacentHTML('beforeend',`<a class="pcard cta rv" href="#reservar" data-pre="Barco privativo"><span><small>Data especial?</small><b>Aniversário, lua de mel ou pedido de casamento</b></span><p>No barco privativo a gente prepara o passeio do jeito que você quiser.</p><span><em>Falar com o Ricardo →</em></span></a>`);
+pgrid.insertAdjacentHTML('beforeend',`<a class="pcard cta rv w" href="#reservar" data-pre="Barco privativo"><span><small>Data especial?</small><b>Aniversário, lua de mel ou pedido de casamento</b></span><p>No barco privativo a gente prepara o passeio do jeito que você quiser.</p><span><em>Falar com o Ricardo →</em></span></a>`);
 OUTROS.forEach(o=>orc.dest.insertAdjacentHTML('beforeend',`<option>${o}</option>`));
 
 /* formulário com calendário (mesmo modelo do site do Agnaldo) */
@@ -734,10 +747,14 @@ gsap.fromTo('#disco',{scale:.6,rotate:-30},{scale:1,rotate:0,ease:'none',scrollT
 gsap.from('.sol .foto,.sol .tag',{opacity:0,duration:1.5,stagger:.2,ease:'power2.out',scrollTrigger:{trigger:'.sol',start:'top 80%'}});
 // destinos (v2: só transform, sem clip-path, pra não engasgar)
 const CM=gsap.utils.toArray('.camada');
-palco.classList.add('trilho');const trk=document.createElement('div');trk.className='trk';CM.forEach(c=>trk.appendChild(c));palco.appendChild(trk);
-const tlp=gsap.timeline({scrollTrigger:{trigger:'#palco',start:'top top',end:()=>'+='+(CM.length-1)*innerWidth,pin:true,scrub:REC?true:.5,anticipatePin:1,invalidateOnRefresh:true,refreshPriority:1}});
-tlp.to(trk,{x:()=>-(CM.length-1)*innerWidth,ease:'none'},0);
-CM.forEach((c,i)=>{gsap.set(c.querySelector('picture'),{xPercent:-12,scale:1.12});tlp.to(c.querySelector('picture'),{xPercent:12,ease:'none',duration:1},0)});
+CM.slice(1).forEach(c=>{gsap.set(c,{yPercent:100});gsap.set(c.querySelector('picture'),{yPercent:-100})});
+const tlp=gsap.timeline({scrollTrigger:{trigger:'#palco',start:'top top',end:()=>'+='+(CM.length-1)*innerHeight*.8,pin:true,scrub:REC?true:.5,anticipatePin:1,invalidateOnRefresh:true,refreshPriority:1}});
+CM.slice(1).forEach((c,i)=>{
+  tlp.to(c,{yPercent:0,ease:'none',duration:1},i)
+     .to(c.querySelector('picture'),{yPercent:0,ease:'none',duration:1},i)
+     .to(CM[i].querySelector('picture'),{yPercent:-18,ease:'none',duration:1},i)
+     .fromTo(c.querySelectorAll('.n,small,h3,p,.btn'),{opacity:0,y:40},{opacity:1,y:0,stagger:.05,duration:.5,ease:'power2.out'},i+.45);
+});
 gsap.from(CM[0].querySelectorAll('.n,small,h3,p,.btn'),{opacity:0,y:30,duration:1.3,stagger:.08,ease:'power3.out',scrollTrigger:{trigger:'#palco',start:'top 60%'}});
 // capa: "Bora pro" troca o destino sozinho
 const slots=gsap.utils.toArray('#slot b');gsap.set(slots,{yPercent:100});gsap.set(slots[0],{yPercent:0});
